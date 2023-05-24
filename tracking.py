@@ -74,16 +74,14 @@ while cap.isOpened():
 
     # Detection section
     results = movenet(input_img)
-    bb_keypoints_with_scores = results['output_0'].numpy()[
-        :, :, 51:].reshape((6, 5))
+    bb_keypoints_with_scores = results['output_0'].numpy()[:, :, 51:].reshape((6, 5))
 
     # Render
-    rectangle_coordinates = ((400, 100), (600, 400))
+    rectangle_coordinates = ((500, 300), (1000, 600))
     loop_through_people(frame, 0.2, bb_keypoints_with_scores,
                         cur_center_points, pre_center_points, count, rectangle_coordinates)
 
-#     start tracking
-
+    #start tracking
     if count <= 2:
         for pt in cur_center_points:
             for pt2 in pre_center_points:
